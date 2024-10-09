@@ -1,0 +1,27 @@
+Из App старый body
+
+  /** 
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #daf7fb; /* Фон общий */
+}
+  */
+
+
+  И старый content
+
+    /*
+  .content {
+    margin-left: 370px; /* Отступ от левого края с учетом меню */
+    padding: 40px 20px;
+    max-width: 800px;
+    background-color: white; /* Белый фон для контента */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    margin-top: 40px; /* Отступ сверху */
+    color: #333;
+  } 
+  */
