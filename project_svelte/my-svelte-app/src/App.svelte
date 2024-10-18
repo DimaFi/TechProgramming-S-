@@ -169,13 +169,13 @@
 
 
   .header {
-    background-color: #e0f7fa;
+    /* background-color: #e0f7fa; */
     padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-bottom: 2px solid #00796b;
+    /* border-bottom: 2px solid #00796b; */
   }
 
   .logo {
@@ -189,22 +189,19 @@
     color: #333;
   }
 
-  .theme-toggle {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
+  /* .theme-toggle {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+} */
 
-  .theme-toggle:hover {
-    background-color: #004d40;
-  }
+.theme-toggle:hover {
+  background-color: #004d40;
+}
 
   button {
     transition: background-color 0.3s;
@@ -321,30 +318,123 @@
     }
   }
 
+
+  /* Основные стили для фиксированного меню */
+  * {
+  box-sizing: border-box; /* Apply box-sizing to all elements */
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px; /* Adjusted padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden; /* Prevent overflow */
+}
+
+
+nav .header {
+  display: flex;
+  align-items: center;
+}
+
+.header img.logo {
+  height: 50px; /* Размер логотипа */
+  margin-right: 15px;
+}
+
+.header h1.title {
+  font-size: 24px;
+  margin: 0;
+  color: #000;
+}
+
+/* Стили для меню */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  justify-content: center; /* Центрирование элементов меню */
+  flex: 1; /* Заставляет меню занять центральное положение */
+}
+
+nav li {
+  display: inline-block;
+}
+
+nav a {
+  text-decoration: none;
+  color: #000; /* Цвет текста */
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: #00bfa6; /* Цвет при наведении и активная ссылка */
+  color: #fff;
+}
+
+/* Размещение кнопки переключения темы */
+nav .theme-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Automatically push the button to the right */
+}
+
+.theme-toggle {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  white-space: nowrap; /* Prevent the button from wrapping */
+}
+
+/* Отступ для основного контента */
+.content {
+  padding-top: 150px; /* Отступ под фиксированное меню */
+}
+
+  
+
 </style>
 
-<div class="header">
-  <img class="logo" src="logo_1.png" alt="Logo" />
-  <h1 class="title">Преданные Души</h1>
-  <button class="theme-toggle" on:click={toggleTheme}>
-    {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
-  </button>
-</div>
 
-<button class="menu-button" on:click={() => (showMenu = !showMenu)}>
-  {showMenu ? 'Close' : 'Menu'}
-</button>
+  <nav>
+    <div class="header">
+      <img class="logo" src="logo_1.png" alt="Logo" />
+      <h1 class="title">Преданные Души</h1>
+    </div>
 
-<div class="app-container">
-  <nav class={`menu ${showMenu ? 'open' : ''}`}>
+
     <ul>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/')}>Главная страница</a></li>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/about')}>О нас</a></li>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/contacts')}>Контакты</a></li>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/donate')}>Пожертвования</a></li>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/news')}>Новости</a></li>
-      <li><a href="javascript:void(0);" on:click={() => navigate('/gallery')}>Фотографии</a></li>
+      <li><a href="javascript:void(0);" on:click={() => navigate('/')} class={currentRoute === '/' ? 'active' : ''}>Главная</a></li>
+      <li><a href="javascript:void(0);" on:click={() => navigate('/gallery')} class={currentRoute === '/gallery' ? 'active' : ''}>Наши животные</a></li>
+      <li><a href="javascript:void(0);" on:click={() => navigate('/contacts')} class={currentRoute === '/contacts' ? 'active' : ''}>Контакты</a></li>
+      <li><a href="javascript:void(0);" on:click={() => navigate('/news')} class={currentRoute === '/news' ? 'active' : ''}>Новости</a></li>
     </ul>
+
+
+    <div class="theme-toggle-container">
+      <button class="theme-toggle" on:click={toggleTheme}>
+        {theme === 'light' ? 'Тёмная' : 'Светлая  '}
+      </button>
+    </div> 
   </nav>
 
   <div class={`content ${showMenu ? 'menu-open' : ''}`}>
@@ -362,12 +452,8 @@
       <FlipImage />
     {/if}
   </div>
-</div>
 
-<!-- <div class="image-button-block">
-  <a href="/donate" class="support-button">Support Us</a>
-</div> -->
-
+  
 <div class="chat-window {showChat ? 'open' : ''}">
   <div class="chat-header">Мы на связи!</div>
   <div class="chat-options">
