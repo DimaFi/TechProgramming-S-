@@ -160,53 +160,6 @@
     padding: 20px;
   }
 
-/* 
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6а 0px;
-    background-color: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  nav .header {
-    display: flex;
-    align-items: center;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    flex: 1;
-  }
-
-  nav a {
-    text-decoration: none;
-    color: #000;
-    font-size: 18px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-
-  nav a:hover,
-  nav a.active {
-    background-color: #00bfa6;
-    color: #fff;
-  } */
-
   .theme-toggle {
     background-color: #00796b;
     color: white;
@@ -267,14 +220,3 @@
         <FlipImage />
       {/if}
     </div>
-
-    
-  <div class="chat-window {showChat ? 'open' : ''}">
-    <div class="chat-header">Мы на связи!</div>
-    <div class="chat-options">
-      <button on:click={() => alert('Есть вопрос? Напиши нам в чат!')}>Чат</button>
-      <button on:click={() => alert('Есть впорос? Напиши нам на почту!')}>Почта</button>
-    </div>
-  </div>
-
-  <button class="chat-button" on:click={toggleChat}>Chat</button>

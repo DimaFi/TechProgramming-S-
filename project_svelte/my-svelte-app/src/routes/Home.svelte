@@ -3,6 +3,12 @@
     import NewsFeed from '../routes/NewsFeed.svelte';
     import FlipImage from './FlipImage.svelte';
 
+
+    // import './src/styles/global.css';
+    // import './src/styles/header.css';
+    // import './src/styles/chat.css';
+    // import './src/styles/container.css';
+
     // Пример новостей
     let newsItems = [
         {
@@ -38,28 +44,15 @@
         margin-bottom: 30px;
     }
 
-    .container {
+    /* .container {
         padding: 20px;
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
-    }
+    } */
 
     .content {
         margin-bottom: 50px;
-    }
-
-    h1 {
-        font-size: 2.5em;
-        color: #00796b;
-        margin-bottom: 20px;
-    }
-
-    p {
-        font-size: 1.2em;
-        line-height: 1.6;
-        color: #333;
-        margin-bottom: 30px;
     }
 
     .button {
