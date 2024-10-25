@@ -6,6 +6,12 @@
     import News from './routes/NewsFeed.svelte';
     import FlipImage from './routes/FlipImage.svelte';
 
+
+    import './styles/global.css';
+    import './styles/header.css';
+    import './styles/chat.css';
+    import './styles/container.css';
+
     // Путь сейчас к странице
     let currentRoute = '/';
 
@@ -45,37 +51,6 @@
   </script>
 
   <style>
-      body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    color: #333;
-    transition: background-color 0.8s, color 0.8s;
-  }
-
-  body[data-theme='light'] {
-    background-color: #f0f0f0;
-    color: #333333;
-  }
-
-  body[data-theme='dark'] {
-    background-color: #2b2b2b;
-    color: #f0f0f0;
-  }
-
-  .container_text {
-    background: linear-gradient(135deg, #e0f7fa, #00796b);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    animation: fadeIn 0.8s ease-out;
-    color: white;
-    font-size: 1.1em;
-    line-height: 1.5;
-    max-width: 800px;
-    margin: 20px auto;
-  }
 
   .container_text h1 {
     font-size: 2em;
@@ -185,74 +160,13 @@
     padding: 20px;
   }
 
-  .chat-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #00796b;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    z-index: 10;
-  }
-
-  .chat-button:hover {
-    background-color: #004d40;
-  }
-
-  .chat-window {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background-color: #e0f7fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: none;
-    z-index: 20;
-    padding: 20px;
-    color: #333;
-  }
-
-  .chat-window.open {
-    display: block;
-  }
-
-  .chat-header {
-    font-size: 18px;
-    color: #00796b;
-    margin-bottom: 10px;
-  }
-
-  .chat-options button {
-    background-color: #00796b;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    color: white;
-    transition: background-color 0.3s;
-  }
-
-  .chat-options button:hover {
-    background-color: #004d40;
-  }
-
+/* 
   nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px;
+    height: 6а 0px;
     background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -291,7 +205,7 @@
   nav a.active {
     background-color: #00bfa6;
     color: #fff;
-  }
+  } */
 
   .theme-toggle {
     background-color: #00796b;
