@@ -1,131 +1,175 @@
 <script>
-    import { fade } from 'svelte/transition';
+    import { fade, fly } from 'svelte/transition';
+    import './styles/global.css';
 
-    // Галерея изображений
+    // Images for the gallery
     let images = [
-        'img_back_1.png', 'img_back_2.png', 'img_back_3.png', 'img_back_4.png', 
-        'img_front_1.png', 'img_front_2.png', 'img_front_3.png', 'img_front_1.png'
+        'img_back_1.png', 'img_back_2.png', 'img_back_3.png', 'img_back_4.png',
+        'img_front_1.png', 'img_front_2.png', 'img_front_3.png'
     ];
-
-    // Функция для перемешивания массива
-    function shuffleArray(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
-
-    // Перемешанный массив изображений
-    let randomizedImages = shuffleArray(images);
 </script>
 
 <style>
-    .buttons {
+    /* Общие стили */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #e8f4f8;
+        color: #333;
+    }
+
+    /* Основной контейнер */
+    .main-content {
         display: flex;
-        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Текстовый блок */
+    .container {
+        max-width: 600px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    /* .container h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .container p {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 20px;
+    } */
+
+    .hero-buttons {
+        display: flex;
+        gap: 10px;
         justify-content: center;
+        margin-bottom: 40px;
     }
 
-    .button {
+    .details-btn, .donate-btn {
         padding: 10px 20px;
-        background-color: #00796b;
+        font-size: 16px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+
+    .details-btn {
+        background-color: #5ec1e6;
         color: #fff;
-        text-decoration: none;
-        border-radius: 5px;
-        font-size: 1em;
-        transition: background-color 0.3s ease;
     }
 
-    .button:hover {
-        background-color: #004d40;
+    .donate-btn {
+        background-color: #00b5ad;
+        color: #fff;
     }
 
+    /* Галерея в стиле мозаики */
     .gallery {
-        position: fixed;
-        top: 0;
-        left: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 150px;
+        gap: 10px;
+        width: 100%;
+        max-width: 1000px;
+    }
+
+    /* Асимметричная структура изображений */
+    .gallery img {
         width: 100%;
         height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    .gallery img {
-        position: absolute;
-        width: 150px;
-        height: auto;
+        object-fit: cover;
         border-radius: 10px;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        opacity: 0;
+        transition: transform 0.3s ease;
     }
 
-    .left {
-        left: 0;
-        animation: slide-left 10s infinite;
+    /* Настраиваем размеры изображений в сетке */
+    .gallery img:nth-child(1) {
+        grid-column: span 2;
+        grid-row: span 2;
     }
 
-    .right {
-        right: 0;
-        animation: slide-right 10s infinite;
+    .gallery img:nth-child(3) {
+        grid-column: span 2;
+        grid-row: span 1;
     }
 
-    @keyframes slide-left {
-        0% {
-            transform: translateX(-150%);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(0);
-            opacity: 0;
-        }
+    .gallery img:nth-child(5) {
+        grid-column: span 1;
+        grid-row: span 2;
     }
 
-    @keyframes slide-right {
-        0% {
-            transform: translateX(150%);
-            opacity: 0;
-        }
-        10% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateX(0);
-            opacity: 0;
-        }
+    .gallery img:nth-child(7) {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Секция "Как помочь" */
+    .how-to-help {
+        padding: 40px 20px;
+        text-align: center;
+        max-width: 800px;
+        margin: 50px auto 0;
+    }
+
+    .how-to-help h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .how-to-help ul {
+        list-style: none;
+    }
+
+    .how-to-help li {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+        color: #555;
     }
 </style>
 
-<div class="container">
-    <h1 in:fade={{ duration: 1000 }}>Спасаем сердца, дарим тепло</h1>
-    <p in:fade={{ duration: 1500 }}>
-        Мы верим, что каждая жизнь ценна и достойна любви. Наш фонд помогает брошенным и нуждающимся животным найти новый дом, вернуть веру в людей и подарить надежду на счастливую жизнь.
-    </p>
-    <div class="buttons">
-        <a href="/more" class="button" in:fade={{ duration: 1000 }}>Подробнее</a>
-        <a href="/donate" class="button" in:fade={{ duration: 1000 }}>Пожертвовать</a>
+<div class="main-content">
+    <!-- Блок с текстом и кнопками -->
+    <div class="container">
+        <h1 in:fade={{ duration: 1000 }}>Спасаем сердца, дарим тепло</h1>
+        <p in:fade={{ duration: 1500 }}>
+            Мы верим, что каждая жизнь цена и достойна любви. Наш фонд помогает брошенным и нуждающимся животным найти новый дом, вернуть веру в людей и подарить надежду на счастливую жизнь...
+        </p>
+        <div class="hero-buttons">
+            <button class="details-btn" in:fly={{ y: 20, duration: 800 }}>Подробнее</button>
+            <button class="donate-btn" in:fly={{ y: 20, duration: 800, delay: 200 }}>Пожертвовать</button>
+        </div>
+    </div>
+
+    <!-- Блок с галереей -->
+    <div class="gallery">
+        {#each images as image, i}
+            <img src={image} alt="Изображение животного" in:fly={{ y: 30, duration: 800, delay: i * 150 }} />
+        {/each}
     </div>
 </div>
 
-<div class="gallery">
-    {#each randomizedImages as image, i}
-        <img src={image} alt="Наш любимец" class={i % 2 === 0 ? 'left' : 'right'} />
-    {/each}
-</div>
-
-<div class="container_text">
-    <!-- Нижняя часть страницы: Как помочь -->
-    <div class="help-section">
-        <h2>Как помочь?</h2>
-        <p>Возьмите друга домой. Откройте своё сердце и примите в свою жизнь преданную душу. Мы уверены, что вместе вы создадите историю любви.</p>
-        <p>Станьте временным куратором. Если вы пока не можете взять животное навсегда, но готовы предоставить временное жильё, это тоже огромная помощь.</p>
-        <p>Поддержите нас. Ваше пожертвование поможет нам обеспечить медицинскую помощь, питание и уход для тех, кто в этом остро нуждается.</p>
-        <p>Расскажите о нас. Делая репосты и рассказывая о нашей деятельности, вы даёте шанс каждому подопечному найти дом.</p>
-    </div>
+<div class="how-to-help">
+    <h2 in:fade={{ duration: 1000 }}>Как помочь?</h2>
+    <ul>
+        <li in:fade={{ duration: 1000, delay: 200 }}>🤍 Возьмите друга домой...</li>
+        <li in:fade={{ duration: 1000, delay: 400 }}>🤍 Станьте временным куратором...</li>
+        <li in:fade={{ duration: 1000, delay: 600 }}>🤍 Поддержите нас...</li>
+        <li in:fade={{ duration: 1000, delay: 800 }}>🤍 Расскажите о нас...</li>
+    </ul>
 </div>

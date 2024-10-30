@@ -1,16 +1,15 @@
   <script>
+    import './styles/global.css';
+    import './styles/header.css';
+    import './styles/chat.css';
+    import './styles/container.css';  
+    
     import Home from './routes/Home.svelte';
     import About from './routes/About.svelte';
     import Contacts from './routes/Contacts.svelte';
     import Donate from './routes/Donate.svelte';
     import News from './routes/NewsFeed.svelte';
     import FlipImage from './routes/FlipImage.svelte';
-
-
-    import './styles/global.css';
-    import './styles/header.css';
-    import './styles/chat.css';
-    import './styles/container.css';
 
     // Путь сейчас к странице
     let currentRoute = '/';
@@ -166,7 +165,7 @@
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
   }
 
   @keyframes fadeIn {
