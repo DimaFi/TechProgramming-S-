@@ -1,3 +1,142 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaf6ff;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Хедер и меню */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #d1f0ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    font-size: 1.5em;
+    color: #00c3a9;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu li {
+    position: relative;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #00c3a9;
+}
+
+.donate-button {
+    background-color: #00c3a9;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+}
+
+.donate-button:hover {
+    background-color: #008f7a;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    background-color: #333;
+    border-radius: 3px;
+    transition: 0.3s ease;
+}
+
+/* Мобильное меню */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #d1f0ff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        z-index: 999;
+    }
+
+    .menu li {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .menu a {
+        font-size: 1.2em;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+        margin-top: 10px;
+    }
+
+    .donate-button {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+/* Секция новостей */
 .news {
     text-align: center;
     padding: 40px 20px;
@@ -8,7 +147,7 @@
 
 .news h2 {
     font-size: 2em;
-    color: #0075ff;
+    color: #00c3a9;
     margin-bottom: 20px;
 }
 
@@ -20,59 +159,72 @@
     margin: 0 auto;
 }
 
-.news-item {
-    display: flex;
+/* Стили для поста новости */
+.news-post {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    gap: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
 }
 
-.news-image {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
-.news-content {
-    text-align: left;
-    flex-grow: 1;
-}
-
-.news-item h3 {
-    font-size: 1.5em;
+.news-title {
+    font-size: 1.8em;
     color: #333;
-    margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 5px;
 }
 
-.news-item .news-date {
+.news-date {
     font-size: 0.9em;
     color: #888;
-    margin-bottom: 15px;
+    text-align: left;
 }
 
-.news-item p {
+.news-description {
     font-size: 1.1em;
+    color: #555;
+    text-align: left;
     line-height: 1.6;
 }
 
+.news-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    /* Скругленные углы для изображения */
+    margin-top: 10px;
+}
 
+/* Адаптивность для постов */
 @media (max-width: 768px) {
-    .news-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    .news-container {
+        padding: 10px;
     }
 
-    .news-image {
-        width: 100%;
-        height: auto;
+    .news-post {
+        padding: 15px;
     }
 
-    .news-content {
-        text-align: center;
+    .news-title {
+        font-size: 1.6em;
+    }
+
+    .news-description {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .news-title {
+        font-size: 1.4em;
+    }
+
+    .news-description {
+        font-size: 0.9em;
     }
 }

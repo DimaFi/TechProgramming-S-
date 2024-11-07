@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <title>Новости - Преданные Души</title>
-    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/news.css' %}">
 </head>
 
 <body>
@@ -36,20 +36,18 @@
             <h2>Последние новости</h2>
             <div class="news-container">
                 {% for news_item in news_list %}
-                <div class="news-item">
+                <div class="news-post">
+                    <h3 class="news-title">{{ news_item.title }}</h3>
+                    <p class="news-date">{{ news_item.date }}</p>
+                    <p class="news-description">{{ news_item.description }}</p>
                     <img src="{{ news_item.image_url }}" alt="Фото новости" class="news-image">
-                    <div class="news-content">
-                        <h3>{{ news_item.title }}</h3>
-                        <p class="news-date">{{ news_item.date }}</p>
-                        <p>{{ news_item.description }}</p>
-                    </div>
                 </div>
                 {% endfor %}
             </div>
         </section>
     </main>
 
-    <script src="script.js"></script>
+    <script src="{% static 'main/js/index.js' %}"></script>
 </body>
 
 </html>
