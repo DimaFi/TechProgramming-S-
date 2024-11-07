@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Преданные Души</title>
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
+            <h1>Преданные Души</h1>
+        </div>
+        <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="{% url 'index' %}">О нас</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="">Наши животные</a></li>
+                <li><a href="">Контакты</a></li>
+                <li><a href="#" class="donate-button">Пожертвовать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Спасаем сердца, дарим тепло</h2>
+            <p>Мы верим, что каждая жизнь ценна и достойна любви. Наш фонд помогает брошенным и нуждающимся животным
+                найти новый дом, вернуть веру в людей и подарить надежду на счастливую жизнь.</p>
+            <p>Вместе с вами мы спасем тех, кто оказался в беде, кто потерял семью или был брошен на произвол судьбы.
+            </p>
+            <div class="hero-buttons">
+                <button>Подробнее</button>
+                <button>Пожертвовать</button>
+            </div>
+            <div class="paw-pattern"></div>
+        </section>
+
+        <section class="gallery">
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="{% static 'main/images/img1.png' %}" alt="Кот 1" class="carousel-image">
+                    <img src="{% static 'main/images/img2.png' %}" alt="Кот 2" class="carousel-image">
+                    <img src="{% static 'main/images/img3.png' %}" alt="Кот 3" class="carousel-image">
+                    <img src="{% static 'main/images/img4.png' %}" alt="Кот 4" class="carousel-image">
+                    <img src="{% static 'main/images/img5.png' %}" alt="Кот 5" class="carousel-image">
+                    <img src="{% static 'main/images/img6.png' %}" alt="Кот 6" class="carousel-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="how-to-help">
+            <h3>Как помочь?</h3>
+            <ul>
+                <li>Возьмите друга домой. Откройте своё сердце и примите в свою жизнь преданную душу.</li>
+                <li>Станьте временным куратором. Если вы пока не можете взять животное навсегда, но готовы предоставить
+                    временное жильё, это тоже огромная помощь.</li>
+                <li>Поддержите нас. Ваше пожертвование поможет нам обеспечить медицинскую помощь, питание и уход.</li>
+                <li>Расскажите о нас. Делая репосты и рассказывая о нашей деятельности, вы даёте шанс каждому
+                    подопечному найти дом.</li>
+            </ul>
+        </section>
+    </main>
+    <script src="{% static 'main/js/index.js' %}"></script>
+</body>
+
+</html>
