@@ -22,7 +22,8 @@ class Animal(models.Model):
     name = models.CharField(max_length=100, verbose_name="Имя")
     age = models.IntegerField(verbose_name="Возраст")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, verbose_name="Пол")
-    photo = models.ImageField(upload_to='animal_photos/', blank=True, null=True, verbose_name="Фото")
+    photo = models.ImageField(upload_to='static/main/animal_photos/', blank=True, null=True, verbose_name="Фото")
+    description = models.TextField(blank=True, null=True, verbose_name="Описание")
     
     def __str__(self):
         return self.name

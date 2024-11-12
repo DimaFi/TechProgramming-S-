@@ -44,9 +44,6 @@
 
     <div class="container">
         <h1>Наши Животные</h1>
-        <div>
-            <p>Количество животных: {{ animals|length }}</p>  <!-- Покажет количество животных -->
-        </div>
         <div class="animal-list">
             {% for animal in animals %}
                 <div class="animal-card">
@@ -59,10 +56,56 @@
                     {% endif %}
                     <h2>{{ animal.name }}</h2>
                     <p>{{ animal.age }} лет {{ animal.get_gender_display }}</p>
-                    <button class="button">Подробнее</button>
+                    <button class="button" onclick="openModal('{{ animal.name }}', '{{ animal.age }}', '{{ animal.get_gender_display }}', '{{ animal.description }}', '{% if animal.photo %}{{ animal.photo.url }}{% endif %}')">Подробнее</button>
                 </div>
             {% endfor %}
         </div>
     </div>
+
+    <!-- Модальное окно -->
+    <div class="modal" id="animal-modal">
+        <div class="modal-content">
+            <img id="modal-photo" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <p id="modal-age-gender"></p>
+            <p id="modal-description"></p>
+            <button class="close-button" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(name, age, gender, description, photoUrl) {
+            // Заполнение данных в модальном окне
+            document.getElementById("modal-name").textContent = name;
+            document.getElementById("modal-age-gender").textContent = `${age} лет ${gender}`;
+            document.getElementById("modal-description").textContent = description;
+            
+            const modalPhoto = document.getElementById("modal-photo");
+            if (photoUrl) {
+                modalPhoto.src = photoUrl;
+                modalPhoto.style.display = 'block';
+            } else {
+                modalPhoto.style.display = 'none';
+            }
+        
+            // Отображение модального окна с анимацией
+            const modal = document.getElementById("animal-modal");
+            modal.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add("show"); // Добавляем класс show для активации анимации
+            }, 10); // Задержка для активации перехода
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById("animal-modal");
+            modal.classList.remove("show"); // Убираем класс show
+        
+            // Ждем окончания анимации и скрываем модальное окно
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Задержка на время анимации
+        }
+    </script>
+    
 </body>
 </html>

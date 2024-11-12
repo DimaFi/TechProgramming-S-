@@ -9,6 +9,7 @@ class AnimalAdmin(admin.ModelAdmin):
     list_display = ('name', 'age', 'gender')  # Поля, которые существуют в модели Animal
     list_filter = ('gender',)
     search_fields = ('name',)
+    options = ('option')
 
 
 admin.site.register(News, NewsAdmin)
