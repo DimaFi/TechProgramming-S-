@@ -1,0 +1,87 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e8f6ff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Общий контейнер страницы */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Стили заголовка */
+h1 {
+    text-align: center;
+    color: #00c4cc;
+    margin-bottom: 30px;
+}
+
+/* Контейнер для карточек животных */
+.animal-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Стили для карточек животных */
+.animal-card {
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.animal-card:hover {
+    transform: scale(1.05);
+}
+
+/* Изображения животных */
+.animal-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Кнопка "Подробнее" */
+.button {
+    background-color: #00c4cc;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #008c8c;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .animal-card {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .animal-card {
+        width: 100%;
+    }
+}

@@ -85,13 +85,10 @@ nav {
 .donate-button {
     background-color: #00c3a9;
     color: white;
-    border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 5px;
     font-size: 1em;
-    font-weight: bold;
     text-align: center;
-    transition: background-color 0.3s ease;
 }
 
 .donate-button:hover {

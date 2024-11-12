@@ -12,5 +12,5 @@ def news_view(request):
 
 
 def animals_view(request):
-    animals_list = Animal.objects.all()
-    return render(request, 'main/animals.html', {'animals': animals_list})
+    animals = Animal.objects.all()
+    return render(request, 'main/animals.html', {'animals': animals})

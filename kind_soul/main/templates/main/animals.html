@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <title>Преданные Души</title>
+    <link rel="stylesheet" href="{% static 'main/css/news.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/animals.css' %}">
+
     <style>
         body { font-family: Arial, sans-serif; background-color: #e8f6ff; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
@@ -42,6 +44,9 @@
 
     <div class="container">
         <h1>Наши Животные</h1>
+        <div>
+            <p>Количество животных: {{ animals|length }}</p>  <!-- Покажет количество животных -->
+        </div>
         <div class="animal-list">
             {% for animal in animals %}
                 <div class="animal-card">
