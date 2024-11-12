@@ -1,0 +1,63 @@
+<!-- animals.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Преданные Души</title>
+    <link rel="stylesheet" href="{% static 'main/css/animals.css' %}">
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #e8f6ff; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .animal-list { display: flex; flex-wrap: wrap; gap: 20px; }
+        .animal-card { width: 200px; border: 1px solid #ccc; border-radius: 10px; padding: 10px; text-align: center; background-color: #fff; }
+        .animal-card img { width: 100%; height: auto; border-radius: 10px; }
+        .button { background-color: #00c4cc; color: #fff; padding: 8px 16px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px; }
+        .button:hover { background-color: #008c8c; }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
+            <h1>Преданные Души</h1>
+        </div>
+        <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="{% url 'index' %}">О нас</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'animals' %}">Наши животные</a></li>
+                <li><a href="">Контакты</a></li>
+                <li><a href="#" class="donate-button">Пожертвовать</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Наши Животные</h1>
+        <div class="animal-list">
+            {% for animal in animals %}
+                <div class="animal-card">
+                    {% if animal.photo %}
+                        <img src="{{ animal.photo.url }}" alt="{{ animal.name }}">
+                    {% else %}
+                        <div style="width: 100%; height: 200px; background-color: #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span>350x350</span>
+                        </div>
+                    {% endif %}
+                    <h2>{{ animal.name }}</h2>
+                    <p>{{ animal.age }} лет {{ animal.get_gender_display }}</p>
+                    <button class="button">Подробнее</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
