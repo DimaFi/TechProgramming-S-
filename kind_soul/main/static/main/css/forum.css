@@ -1,0 +1,161 @@
+/* Стили для форума */
+
+/* Контейнер форума */
+.forum-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.topic-form-container, .topic-detail, .forum-list {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Заголовок форума */
+.forum-container h1 {
+    font-size: 2.5em;
+    color: #00c3a9;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Список тем форума */
+.topic-list {
+    list-style: none;
+    padding: 0;
+}
+
+.topic-item {
+    background-color: #f7faff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.topic-item:hover {
+    background-color: #d1f0ff;
+}
+
+/* Стили для заголовка темы */
+.topic-item h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin: 0;
+}
+
+/* Стили для даты последнего сообщения */
+.topic-item .last-post {
+    font-size: 0.9em;
+    color: #888;
+}
+
+/* Стили для создания новой темы */
+.new-topic-button {
+    display: block;
+    background-color: #00c3a9;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-top: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.new-topic-button:hover {
+    background-color: #008f7a;
+}
+
+/* Форма создания темы */
+.topic-form-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f7faff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topic-form-container h2 {
+    font-size: 2.2em;
+    color: #00c3a9;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.topic-form input, .topic-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: #333;
+}
+
+.topic-form textarea {
+    resize: vertical;
+    min-height: 200px;
+}
+
+.topic-form button {
+    background-color: #00c3a9;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.topic-form button:hover {
+    background-color: #008f7a;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .forum-container {
+        padding: 15px;
+    }
+
+    .topic-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .new-topic-button {
+        font-size: 1.1em;
+        padding: 8px 15px;
+    }
+
+    .topic-form-container {
+        padding: 15px;
+    }
+
+    .topic-form input, .topic-form textarea {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .topic-item h3 {
+        font-size: 1.6em;
+    }
+
+    .topic-form-container h2 {
+        font-size: 1.8em;
+    }
+}

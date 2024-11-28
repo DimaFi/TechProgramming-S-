@@ -36,6 +36,7 @@
                 <li><a href="{% url 'index' %}">О нас</a></li>
                 <li><a href="{% url 'news' %}">Новости</a></li>
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
+                <li><a href="{% url 'topic-list' %}">Форум</a></li>
                 <li><a href="">Контакты</a></li>
                 <li><a href="#" class="donate-button">Пожертвовать</a></li>
             </ul>
@@ -48,7 +49,7 @@
             {% for animal in animals %}
                 <div class="animal-card">
                     {% if animal.photo %}
-                        <img src="{{ animal.photo.url }}" alt="{{ animal.name }}">
+                        <img src="{{ animal.photos.first.photo_url }}" alt="{{ animal.name }}">
                     {% else %}
                         <div style="width: 100%; height: 200px; background-color: #ccc; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
                             <span>350x350</span>
@@ -56,7 +57,16 @@
                     {% endif %}
                     <h2>{{ animal.name }}</h2>
                     <p>{{ animal.age }} лет {{ animal.get_gender_display }}</p>
-                    <button class="button" onclick="openModal('{{ animal.name }}', '{{ animal.age }}', '{{ animal.get_gender_display }}', '{{ animal.description }}', '{% if animal.photo %}{{ animal.photo.url }}{% endif %}')">Подробнее</button>
+                    <button class="button" 
+    onclick="openModal(
+        &quot;{{ animal.name|escapejs }}&quot;, 
+        &quot;{{ animal.age|escapejs }}&quot;, 
+        &quot;{{ animal.get_gender_display|escapejs }}&quot;, 
+        &quot;{{ animal.description|escapejs }}&quot;, 
+        &quot;{% if animal.photos.all %}{{ animal.photos.first.photo_url|escapejs }}{% else %}{% static 'images/default.jpg' %}{% endif %}&quot;
+    )">
+    Подробнее
+</button>                                            
                 </div>
             {% endfor %}
         </div>
@@ -65,7 +75,13 @@
     <!-- Модальное окно -->
     <div class="modal" id="animal-modal">
         <div class="modal-content">
-            <img id="modal-photo" src="" alt="">
+            <!-- Карусель фотографий -->
+            <div id="modal-carousel">
+                <button id="prev-button" onclick="changePhoto(-1)">‹</button>
+                <img id="modal-photo" src="" alt="URL Фото">
+                <button id="next-button" onclick="changePhoto(1)">›</button>
+            </div>
+            
             <h2 id="modal-name"></h2>
             <p id="modal-age-gender"></p>
             <p id="modal-description"></p>
@@ -74,38 +90,54 @@
     </div>
 
     <script>
-        function openModal(name, age, gender, description, photoUrl) {
-            // Заполнение данных в модальном окне
+        let currentPhotoIndex = 0; // Индекс текущей фотографии
+        let photos = []; // Список фотографий
+        
+        function openModal(name, age, gender, description, photoUrls) {
+            // Заполняем данные
             document.getElementById("modal-name").textContent = name;
             document.getElementById("modal-age-gender").textContent = `${age} лет ${gender}`;
             document.getElementById("modal-description").textContent = description;
-            
-            const modalPhoto = document.getElementById("modal-photo");
-            if (photoUrl) {
-                modalPhoto.src = photoUrl;
-                modalPhoto.style.display = 'block';
-            } else {
-                modalPhoto.style.display = 'none';
-            }
         
-            // Отображение модального окна с анимацией
+            // Устанавливаем список фотографий
+            photos = photoUrls ? photoUrls.split(',') : []; // Если photoUrls пустой, используем пустой массив
+            console.log("Processed photos array:", photos); // Проверяем, что массив заполняется правильно
+            console.log("Photo URLs received:", photoUrls);
+
+                
+            currentPhotoIndex = 0;
+            updatePhoto();
+        
+            // Показываем модальное окно
             const modal = document.getElementById("animal-modal");
             modal.style.display = "flex";
-            setTimeout(() => {
-                modal.classList.add("show"); // Добавляем класс show для активации анимации
-            }, 10); // Задержка для активации перехода
+            setTimeout(() => modal.classList.add("show"), 10);
+        }
+        
+        function updatePhoto() {
+            const modalPhoto = document.getElementById("modal-photo");
+            if (photos.length > 0 && photos[currentPhotoIndex]) {
+                modalPhoto.src = photos[currentPhotoIndex];
+                modalPhoto.style.display = 'block';
+            } else {
+                modalPhoto.src = ''; // Убираем изображение, если оно отсутствует
+                modalPhoto.style.display = 'none';
+            }
+        }
+        
+        function changePhoto(direction) {
+            currentPhotoIndex = (currentPhotoIndex + direction + photos.length) % photos.length;
+            updatePhoto();
         }
         
         function closeModal() {
             const modal = document.getElementById("animal-modal");
-            modal.classList.remove("show"); // Убираем класс show
-        
-            // Ждем окончания анимации и скрываем модальное окно
-            setTimeout(() => {
-                modal.style.display = "none";
-            }, 300); // Задержка на время анимации
+            modal.classList.remove("show");
+            setTimeout(() => modal.style.display = "none", 300);
         }
     </script>
+
+    <script src="{% static 'main/js/index.js' %}"></script>
     
 </body>
 </html>
