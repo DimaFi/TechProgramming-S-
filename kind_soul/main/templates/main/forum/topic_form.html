@@ -1,6 +1,5 @@
-<!-- Страница topic_create.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -12,25 +11,52 @@
 </head>
 
 <body>
+    <!-- Шапка -->
     <header>
         <div class="logo">
             <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
             <h1>Преданные Души</h1>
         </div>
+        <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="{% url 'index' %}">О нас</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'animals' %}">Наши животные</a></li>
+                <li><a href="{% url 'topic-list' %}">Форум</a></li>
+                <li><a href="#">Контакты</a></li>
+                <li><a href="#" class="donate-button">Пожертвовать</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         <div class="forum-container">
             <section class="topic-form">
                 <h2>Создать новую тему</h2>
-                <form method="POST">
+                <form method="POST" class="create-topic-form">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Создать тему</button>
+                    <div class="form-group">
+                        <label for="id_title">Название темы:</label>
+                        {{ form.title }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_description">Описание:</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Создать тему</button>
+                    </div>
                 </form>
             </section>
         </div>
     </main>
+
+    <script src="{% static 'main/js/index.js' %}"></script>
 </body>
 
 </html>

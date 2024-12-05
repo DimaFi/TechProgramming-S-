@@ -1,4 +1,3 @@
-<!-- Страница topic_list.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,6 +11,7 @@
 </head>
 
 <body>
+    <!-- Шапка -->
     <header>
         <div class="logo">
             <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
@@ -34,30 +34,65 @@
         </nav>
     </header>
 
+    <!-- Основное содержимое -->
     <main>
         <div class="forum-container">
+            <!-- Приветственный блок -->
             <section class="hero">
                 <h2>Добро пожаловать на форум</h2>
                 <p>Здесь вы можете обсуждать любые темы, связанные с нашей деятельностью, помогать другим и делиться своим опытом.</p>
             </section>
 
+            <!-- Статистика форума -->
+            <section class="forum-stats">
+                <div class="stats-card">
+                    <h4>Всего тем</h4>
+                    <p>{{ topics.count }}</p>
+                </div>
+                <div class="stats-card">
+                    <h4>Всего сообщений</h4>
+                    <p>{{ total_comments }}</p>
+                </div>
+                <div class="stats-card">
+                    <h4>Активных пользователей</h4>
+                    <p>{{ active_users }}</p>
+                </div>
+            </section>
+
+            <!-- Список тем -->
             <section class="forum-list">
-                <h3>Список тем</h3>
+                <!-- Кнопка для создания новой темы (перемещаем выше) -->
+                <a href="{% url 'topic-create' %}" class="btn">Создать новую тему</a>
+
+                <h3>Обсуждаемые темы</h3>
                 <ul>
                     {% for topic in topics %}
-                    <li>
-                        <a href="{% url 'topic-detail' topic.pk %}">{{ topic.title }}</a>
-                        <p>{{ topic.description }}</p>
+                    <li class="forum-card">
+                        <!-- Заголовок темы -->
+                        <a href="{% url 'topic-detail' topic.pk %}" class="forum-title">{{ topic.title }}</a>
+
+                        <!-- Краткое описание -->
+                        <p class="forum-description">{{ topic.description }}</p>
+
+                        <!-- Информация о теме -->
+                        <div class="forum-info">
+                            <span>Автор: {{ topic.author }}</span>
+                            <span>Создано: {{ topic.created_at|date:"d M Y" }}</span>
+                            <span>Комментариев: {{ topic.comment_set.count }}</span>
+                        </div>
+
+                        <!-- Кнопка "Подробнее" -->
+                        <a href="{% url 'topic-detail' topic.pk %}" class="btn">Подробнее</a>
                     </li>
                     {% empty %}
                     <p>Тем пока нет. Создайте первую!</p>
                     {% endfor %}
                 </ul>
-                <a href="{% url 'topic-create' %}" class="donate-button">Создать новую тему</a>
             </section>
         </div>
     </main>
 
+    <!-- Скрипты -->
     <script src="{% static 'main/js/index.js' %}"></script>
 </body>
 

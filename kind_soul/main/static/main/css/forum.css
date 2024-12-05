@@ -1,161 +1,433 @@
-/* Стили для форума */
+/* Основной стиль форума */
 
-/* Контейнер форума */
-.forum-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Выравнивание текста по центру */
-}
-
-.topic-form-container, .topic-detail, .forum-list {
-    margin: 0 auto;
-    max-width: 800px;
-}
-
-/* Заголовок форума */
-.forum-container h1 {
-    font-size: 2.5em;
-    color: #00c3a9;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Список тем форума */
-.topic-list {
-    list-style: none;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
     padding: 0;
 }
 
-.topic-item {
-    background-color: #f7faff;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-.topic-item:hover {
-    background-color: #d1f0ff;
-}
-
-/* Стили для заголовка темы */
-.topic-item h3 {
-    font-size: 1.8em;
-    color: #333;
-    margin: 0;
-}
-
-/* Стили для даты последнего сообщения */
-.topic-item .last-post {
-    font-size: 0.9em;
-    color: #888;
-}
-
-/* Стили для создания новой темы */
-.new-topic-button {
-    display: block;
-    background-color: #00c3a9;
-    color: white;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1.2em;
-    margin-top: 30px;
-    transition: background-color 0.3s ease;
-}
-
-.new-topic-button:hover {
-    background-color: #008f7a;
-}
-
-/* Форма создания темы */
-.topic-form-container {
-    max-width: 800px;
-    margin: 40px auto;
+    flex-wrap: wrap; /* Для адаптивности */
+    margin: 0 auto;
+    max-width: 1200px;
     padding: 20px;
-    background-color: #f7faff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.topic-form-container h2 {
-    font-size: 2.2em;
-    color: #00c3a9;
+/* Основной контент */
+.main-content {
+    flex: 1 1 70%; /* Основной блок занимает 70% ширины */
+    margin-right: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Секции форума */
+.forum-section {
     margin-bottom: 20px;
-    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-.topic-form input, .topic-form textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0;
+.forum-section:last-child {
+    border-bottom: none;
+}
+
+.forum-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.forum-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Правая панель */
+.sidebar {
+    flex: 1 1 25%; /* Правая панель занимает 25% ширины */
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Блоки в правой панели */
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-section:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.sidebar-item {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.sidebar-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .main-content, .sidebar {
+        flex: 1 1 100%;
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .sidebar {
+        margin-bottom: 0;
+    }
+}
+
+/* Скрытие комментариев по умолчанию */
+.comments {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Отображение комментариев при активном состоянии */
+.comments.active {
+    display: block;
+}
+
+.comment-form {
+    margin-top: 10px;
+}
+
+.comment-form input {
+    width: 80%;
+    padding: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
-    background-color: #fff;
+}
+
+.comment-form button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        order: 2;
+    }
+
+    .main-content {
+        order: 1;
+    }
+}
+
+/* Основные стили форума */
+.forum-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Секция приветствия */
+.hero {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Список тем */
+.forum-list h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
     color: #333;
 }
 
-.topic-form textarea {
-    resize: vertical;
-    min-height: 200px;
+.forum-list ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.topic-form button {
-    background-color: #00c3a9;
-    color: white;
-    border: none;
-    padding: 12px 20px;
+.forum-list li {
+    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease-in-out;
 }
 
-.topic-form button:hover {
+.forum-list li:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+
+.forum-list a {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000000;
+    text-decoration: none;
+}
+
+.forum-list a:hover {
+    text-decoration: underline;
+}
+
+/* Кнопка создания темы */
+.donate-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #008f7a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.donate-button:hover {
     background-color: #008f7a;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
     .forum-container {
-        padding: 15px;
+        padding: 10px;
     }
 
-    .topic-item {
-        flex-direction: column;
-        align-items: flex-start;
+    .hero p {
+        font-size: 0.9em;
     }
 
-    .new-topic-button {
-        font-size: 1.1em;
-        padding: 8px 15px;
+    .forum-list li {
+        padding: 10px;
     }
 
-    .topic-form-container {
-        padding: 15px;
-    }
-
-    .topic-form input, .topic-form textarea {
-        font-size: 1em;
+    .donate-button {
+        padding: 8px 12px;
     }
 }
 
-@media (max-width: 480px) {
-    .topic-item h3 {
-        font-size: 1.6em;
+/* Статистика форума */
+.forum-stats {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.stats-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.stats-card h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.stats-card p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Карточки тем */
+.forum-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.forum-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.forum-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+.forum-description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.forum-info span {
+    display: block;
+    font-size: 12px;
+    color: #777;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #008f7a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #008f7a;
+}
+
+/* стили для комментов */
+.comment-container {
+    margin-bottom: 20px;
+}
+
+.comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.comment-author {
+    font-weight: bold;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.pagination .current {
+    padding: 5px 10px;
+}
+
+/* Стиль для формы создания темы */
+.topic-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.topic-form h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.create-topic-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-topic-form .form-row {
+    margin-bottom: 15px;
+}
+
+.create-topic-form label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.create-topic-form input,
+.create-topic-form textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.create-topic-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.create-topic-form button {
+    background-color: #008f7a;
+    color: white;
+    padding: 12px 18px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.create-topic-form button:hover {
+    background-color: #007b69;
+}
+
+/* Адаптивность для страницы создания темы */
+@media (max-width: 768px) {
+    .topic-form {
+        padding: 15px;
     }
 
-    .topic-form-container h2 {
-        font-size: 1.8em;
+    .create-topic-form input,
+    .create-topic-form textarea {
+        font-size: 0.9rem;
+    }
+
+    .create-topic-form button {
+        padding: 10px 15px;
+        font-size: 1rem;
     }
 }

@@ -33,3 +33,9 @@ python manage.py runserver
 Обновление и добавление зависимостей в проект:
 
 pip freeze > requirements.txt
+
+Для проверки и установки зависимостей:
+
+python manage.py makemigrations 
+
+python manage.py migrate   

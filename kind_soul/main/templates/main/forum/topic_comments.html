@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>{{ topic.title }} - Все комментарии</title>
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
+            <h1>Преданные Души</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="forum-container">
+            <section class="topic-comments">
+                <h2>Все комментарии к теме: {{ topic.title }}</h2>
+                <div class="comment-container">
+                    {% for comment in comments %}
+                    <div class="comment">
+                        <p class="comment-author">{{ comment.author.username }}:</p>
+                        <p class="comment-content">{{ comment.content }}</p>
+                        <p class="comment-date">{{ comment.created_at }}</p>
+                    </div>
+                    {% empty %}
+                    <p>Комментариев пока нет.</p>
+                    {% endfor %}
+                </div>
+
+                <a href="{% url 'comment-create' topic.pk %}" class="donate-button">Добавить комментарий</a>
+            </section>
+        </div>
+    </main>
+
+    <script src="{% static 'main/js/index.js' %}"></script>
+</body>
+
+</html>

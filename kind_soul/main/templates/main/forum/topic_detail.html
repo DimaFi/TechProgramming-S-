@@ -1,4 +1,3 @@
-<!-- Страница topic_detail.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +8,11 @@
     <title>{{ topic.title }} - Форум - Преданные Души</title>
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/detail.css' %}">
 </head>
 
 <body>
+    <!-- Шапка -->
     <header>
         <div class="logo">
             <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
@@ -40,9 +41,10 @@
                 <h2>{{ topic.title }}</h2>
                 <p class="topic-description">{{ topic.description }}</p>
                 <p class="topic-author">Автор: {{ topic.author.username }} | {{ topic.created_at }}</p>
+
                 <h3>Комментарии</h3>
                 <div class="comment-container">
-                    {% for comment in topic.comments.all %}
+                    {% for comment in page_obj %}
                     <div class="comment">
                         <p class="comment-author">{{ comment.author.username }}:</p>
                         <p class="comment-content">{{ comment.content }}</p>
@@ -53,7 +55,35 @@
                     {% endfor %}
                 </div>
 
-                <a href="{% url 'comment-create' topic.pk %}" class="donate-button">Добавить комментарий</a>
+                <!-- Пагинация -->
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; Первая</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+
+                <!-- Переход на страницу со всеми комментариями -->
+                {% if topic.comments.count > 10 %}
+                    <a href="{% url 'topic-comments' topic.pk %}" class="btn">Смотреть все комментарии</a>
+                {% endif %}
+
+                <form method="post" action="{% url 'comment-create' topic.pk %}">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}  <!-- Поля формы для нового комментария -->
+                    <button type="submit">Добавить комментарий</button>
+                </form>
             </section>
         </div>
     </main>
