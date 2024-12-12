@@ -58,7 +58,11 @@ class Comment(models.Model):
         return f'Comment by {self.author} on {self.topic}'
     
 
-# class CommentForm(forms.ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields = ['content']
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    # Пример дополнительных полей:
+    bio = models.TextField(blank=True, verbose_name='О себе')
+    avatar = models.ImageField(upload_to='avatars/', blank=True, verbose_name='Аватар')
+
+    def __str__(self):
+        return self.user.username

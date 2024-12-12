@@ -8,6 +8,7 @@
     <title>Создать новую тему</title>
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
 </head>
 
 <body>
@@ -24,6 +25,17 @@
                 <span></span>
             </div>
             <ul class="menu" id="menu">
+                {% if user.is_authenticated %}
+                <li>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" class="btn btn-primary">Выйти</button>
+                    </form>
+                </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+                {% endif %}
                 <li><a href="{% url 'index' %}">О нас</a></li>
                 <li><a href="{% url 'news' %}">Новости</a></li>
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
@@ -33,6 +45,7 @@
             </ul>
         </nav>
     </header>
+
 
     <main>
         <div class="forum-container">

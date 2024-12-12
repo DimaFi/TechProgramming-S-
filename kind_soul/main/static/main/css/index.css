@@ -1,3 +1,6 @@
+/* index.css */
+
+/* Общие стили */
 * {
     margin: 0;
     padding: 0;
@@ -12,150 +15,7 @@ body {
     overflow-x: hidden;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-    background-color: #d1f0ff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-}
-
-.logo h1 {
-    font-size: 1.5em;
-    color: #00c3a9;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.menu {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-.menu li {
-    position: relative;
-}
-
-.menu a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 5px 0;
-    transition: color 0.3s ease;
-}
-
-.menu a:hover {
-    color: #008f7a;
-}
-
-.menu a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 3px;
-    background-color: #00c3a9;
-    transition: width 0.3s ease-in-out;
-}
-
-.menu a:hover::after,
-.menu a.active::after {
-    width: 100%;
-}
-
-.donate-button {    
-    background-color: #00c3a9;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1em;
-    text-align: center;
-}
-
-.donate-button:hover {
-    background-color: #008f7a;
-}
-
-.menu-toggle {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-}
-
-.menu-toggle span {
-    display: block;
-    height: 3px;
-    background-color: #333;
-    border-radius: 3px;
-    transition: 0.3s ease;
-}
-
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    .menu {
-        display: none;
-        flex-direction: column;
-        position: fixed;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background-color: #d1f0ff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 10px 0;
-        z-index: 999;
-    }
-
-    .menu li {
-        text-align: center;
-        padding: 10px 0;
-    }
-
-    .menu a {
-        font-size: 1.2em;
-    }
-
-    .menu.active {
-        display: flex;
-    }
-
-    .menu-toggle {
-        display: flex;
-        margin-left: auto;
-        margin-top: 10px;
-    }
-
-    .donate-button {
-        width: 90%;
-        margin: 10px auto;
-    }
-}
-
+/* Герой секция */
 .hero {
     text-align: center;
     padding: 40px 20px;
@@ -189,6 +49,7 @@ nav {
     background-color: #008f7a;
 }
 
+/* Галерея */
 .gallery {
     margin-top: 20px;
     padding: 20px;
@@ -231,6 +92,7 @@ nav {
     }
 }
 
+/* Как помочь секция */
 .how-to-help {
     margin-top: 30px;
     padding: 20px;
@@ -257,7 +119,7 @@ nav {
     font-size: 1.1em;
 }
 
-
+/* Модальное окно */
 .fullscreen {
     position: fixed;
     top: 0;

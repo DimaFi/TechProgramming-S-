@@ -1,3 +1,4 @@
+{% comment %} topic_list.html {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,6 +9,7 @@
     <title>Форум</title>
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
 </head>
 
 <body>
@@ -24,6 +26,15 @@
                 <span></span>
             </div>
             <ul class="menu" id="menu">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="btn btn-danger">Выйти</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+                    {% endif %}
                 <li><a href="{% url 'index' %}">О нас</a></li>
                 <li><a href="{% url 'news' %}">Новости</a></li>
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
@@ -61,8 +72,14 @@
 
             <!-- Список тем -->
             <section class="forum-list">
-                <!-- Кнопка для создания новой темы (перемещаем выше) -->
-                <a href="{% url 'topic-create' %}" class="btn">Создать новую тему</a>
+                {% if user.is_authenticated %}
+                    <!-- Кнопка видна только для авторизованных пользователей -->
+                    <a href="{% url 'topic-create' %}" class="btn">Создать новую тему</a>
+                {% else %}
+                <p class="login-prompt">
+                    Чтобы создать новую тему, необходимо <a href="{% url 'login' %}">войти</a>.
+                </p>
+                {% endif %}
 
                 <h3>Обсуждаемые темы</h3>
                 <ul>

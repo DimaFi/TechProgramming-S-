@@ -6,14 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <title>{{ topic.title }} - Форум - Преданные Души</title>
-    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
 </head>
 
 <body>
     <!-- Шапка -->
-    <header>
+    <header id="header">
         <div class="logo">
             <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
             <h1>Преданные Души</h1>
@@ -25,6 +24,17 @@
                 <span></span>
             </div>
             <ul class="menu" id="menu">
+                {% if user.is_authenticated %}
+                <li>
+                    <form action="{% url 'logout' %}" method="post" class="logout-form">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" class="btn btn-primary">Выйти</button>
+                    </form>
+                </li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="btn btn-primary">Войти</a>
+                {% endif %}
                 <li><a href="{% url 'index' %}">О нас</a></li>
                 <li><a href="{% url 'news' %}">Новости</a></li>
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
@@ -35,10 +45,11 @@
         </nav>
     </header>
 
-    <main>
+    <main id="topic-page">
         <div class="forum-container">
-            <section class="topic-detail">
-                <h2>{{ topic.title }}</h2>
+            <!-- Секция с деталями темы -->
+            <section class="topic-detail-section">
+                <h2 class="topic-title">{{ topic.title }}</h2>
                 <p class="topic-description">{{ topic.description }}</p>
                 <p class="topic-author">Автор: {{ topic.author.username }} | {{ topic.created_at }}</p>
 
@@ -51,19 +62,19 @@
                         <p class="comment-date">{{ comment.created_at }}</p>
                     </div>
                     {% empty %}
-                    <p>Комментариев пока нет. Будьте первым!</p>
+                    <p class="comment-empty">Комментариев пока нет. Будьте первым!</p>
                     {% endfor %}
                 </div>
 
                 <!-- Пагинация -->
-                <div class="pagination">
+                <div class="pagination-container">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
                             <a href="?page=1">&laquo; Первая</a>
                             <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
                         {% endif %}
 
-                        <span class="current">
+                        <span class="current-page">
                             Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
                         </span>
 
@@ -74,15 +85,13 @@
                     </span>
                 </div>
 
-                <!-- Переход на страницу со всеми комментариями -->
-                {% if topic.comments.count > 10 %}
-                    <a href="{% url 'topic-comments' topic.pk %}" class="btn">Смотреть все комментарии</a>
-                {% endif %}
-
+                <!-- Форма добавления комментария -->
                 <form method="post" action="{% url 'comment-create' topic.pk %}">
                     {% csrf_token %}
-                    {{ comment_form.as_p }}  <!-- Поля формы для нового комментария -->
-                    <button type="submit">Добавить комментарий</button>
+                    {{ comment_form.as_p }} <!-- Поля формы для нового комментария -->
+                    <div class="submit-comment-container">
+                        <button type="submit" class="btn submit-comment-btn">Добавить комментарий</button>
+                    </div>
                 </form>
             </section>
         </div>

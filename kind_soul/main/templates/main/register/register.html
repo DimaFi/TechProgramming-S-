@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'main/css/styles.css' %}">
+</head>
+<body> 
+    <div class="form-container">
+        <h1 class="form-title">Регистрация</h1>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Зарегистрироваться</button>
+        </form>
+        <p class="form-link">Уже есть аккаунт? <a href="{% url 'login' %}" class="link">Войти</a></p>
+
+        <div class="container mt-4">
+            <!-- Форма входа/регистрации -->
+        
+            <!-- Кнопка для возврата на главную -->
+            <a href="{% url 'index' %}" class="btn btn-secondary btn-lg w-100">Вернуться на главную</a>
+        </div>
+    </div>
+</body>
+</html>
