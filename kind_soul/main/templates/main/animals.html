@@ -56,7 +56,10 @@
         </nav>
     </header>
 
-    <div class="container">
+
+    {% comment %} Наши животные, с каруселью, но не работает отображение {% endcomment %}
+
+    {% comment %} <div class="container">
         <h1>Наши Животные</h1>
         <div class="animal-list">
             {% for animal in animals %}
@@ -100,9 +103,42 @@
             <p id="modal-description"></p>
             <button class="close-button" onclick="closeModal()">Закрыть</button>
         </div>
+    </div> {% endcomment %}
+
+    <div class="container">
+        <h1>Наши Животные</h1>
+        {% comment %} <div>
+            <p>Количество животных: {{ animals|length }}</p> <!-- Покажет количество животных -->
+        </div> {% endcomment %}
+        <div class="animal-list">
+            {% for animal in animals %}
+                <div class="animal-card">
+                    <h2>{{ animal.name }}</h2>
+    
+                    <!-- Отображаем первое фото, если оно есть -->
+                    {% with animal.photos.first as photo %}
+                        {% if photo and photo.photo %}
+                            <img src="{{ photo.photo.url }}" alt="Фото {{ animal.name }}">
+                        {% else %}
+                            <img src="/static/default.jpg" alt="Фото отсутствует"> <!-- Заглушка -->
+                        {% endif %}
+                    {% endwith %}
+    
+                    <p>{{ animal.age }} лет {{ animal.get_gender_display }}</p>
+                    
+                    <button 
+                        class="button" 
+                        onclick="openModal('{{ animal.name }}', '{{ animal.age }}', '{{ animal.get_gender_display }}', '{{ animal.description }}', 
+                        {% if photo and photo.photo %}'{{ photo.photo.url }}'{% else %}''{% endif %})">
+                        Подробнее
+                    </button>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 
-    <script>
+
+    {% comment %} <script>
         let currentPhotoIndex = 0; // Индекс текущей фотографии
         let photos = []; // Список фотографий
         
@@ -147,6 +183,51 @@
             const modal = document.getElementById("animal-modal");
             modal.classList.remove("show");
             setTimeout(() => modal.style.display = "none", 300);
+        }
+    </script> {% endcomment %}
+
+    <!-- Модальное окно -->
+    <div class="modal" id="animal-modal">
+        <div class="modal-content">
+            <img id="modal-photo" src="" alt="">
+            <h2 id="modal-name"></h2>
+            <p id="modal-age-gender"></p>
+            <p id="modal-description"></p>
+            <button class="close-button" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal(name, age, gender, description, photoUrl) {
+            // Заполнение данных в модальном окне
+            document.getElementById("modal-name").textContent = name;
+            document.getElementById("modal-age-gender").textContent = `${age} лет ${gender}`;
+            document.getElementById("modal-description").textContent = description;
+            
+            const modalPhoto = document.getElementById("modal-photo");
+            if (photoUrl) {
+                modalPhoto.src = photoUrl;
+                modalPhoto.style.display = 'block';
+            } else {
+                modalPhoto.style.display = 'none';
+            }
+        
+            // Отображение модального окна с анимацией
+            const modal = document.getElementById("animal-modal");
+            modal.style.display = "flex";
+            setTimeout(() => {
+                modal.classList.add("show"); // Добавляем класс show для активации анимации
+            }, 10); // Задержка для активации перехода
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById("animal-modal");
+            modal.classList.remove("show"); // Убираем класс show
+        
+            // Ждем окончания анимации и скрываем модальное окно
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Задержка на время анимации
         }
     </script>
 

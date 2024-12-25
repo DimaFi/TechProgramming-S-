@@ -29,9 +29,16 @@ class Animal(models.Model):
         return self.name
     
 
+# class AnimalPhoto(models.Model):
+#     animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='photos', verbose_name="Животное")
+#     photo_url = models.URLField(max_length=500, verbose_name="URL Фото", default='https://example.com/default.jpg')
+
+#     def __str__(self):
+#         return f"Фото для {self.animal.name}"
+
 class AnimalPhoto(models.Model):
     animal = models.ForeignKey(Animal, on_delete=models.CASCADE, related_name='photos', verbose_name="Животное")
-    photo_url = models.URLField(max_length=500, verbose_name="URL Фото", default='https://example.com/default.jpg')
+    photo = models.ImageField(upload_to='animal_photos/', verbose_name="Фото", blank=True, null=True)
 
     def __str__(self):
         return f"Фото для {self.animal.name}"
