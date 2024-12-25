@@ -42,7 +42,7 @@
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
                 <li><a href="{% url 'topic-list' %}">Форум</a></li>
                 <li><a href="{% url 'contacts' %}">Контакты</a></li>
-                <li><a href="#" class="donate-button">Пожертвовать</a></li>
+                <li><a href="{% url 'contacts' %}" class="donate-button">Пожертвовать</a></li>
             </ul>
         </nav>
     </header>
@@ -55,8 +55,8 @@
             <p>Вместе с вами мы спасем тех, кто оказался в беде, кто потерял семью или был брошен на произвол судьбы.
             </p>
             <div class="hero-buttons">
-                <button>Подробнее</button>
-                <button>Пожертвовать</button>
+                <a href="{% url 'contacts' %}" class="button"><button>Подробнее</button></a>
+                <a href="{% url 'contacts' %}" class="button"><button>Пожертвовать</button></a>
             </div>
             <div class="paw-pattern"></div>
         </section>

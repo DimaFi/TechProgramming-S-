@@ -39,7 +39,7 @@
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
                 <li><a href="{% url 'topic-list' %}">Форум</a></li>
                 <li><a href="#">Контакты</a></li>
-                <li><a href="#" class="donate-button">Пожертвовать</a></li>
+                <li><a href="{% url 'contacts' %}" class="donate-button">Пожертвовать</a></li>
             </ul>
         </nav>
     </header>
@@ -61,7 +61,8 @@
                     <strong>БИК:</strong> 043601607<br>
                     <strong>КПП:</strong> 643401001
                 </p>
-                <p>По всем вопросам касательно животных и предложения новостей писать: fond_dobrye_dyshi@gmail.com</p>
+                <p><strong>По всем вопросам касательно животных и предложения новостей писать:</strong><br>
+                    <a href="mailto:fond_dobrye_dyshi@gmail.com">fond_dobrye_dyshi@gmail.com</a></p>
             </div>
         </section>
     </main>
