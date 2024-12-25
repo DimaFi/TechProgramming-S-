@@ -1,30 +1,23 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты</title>
     {% load static %}
-    <title>Создать новую тему</title>
-    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'main/css/forum.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/contacts.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
 </head>
 
 <body>
-    <!-- Шапка -->
     <header>
         <div class="logo">
             <img src="{% static 'main/images/logo.png' %}" alt="Логотип">
             <h1>Преданные Души</h1>
         </div>
         <nav>
-            <div class="menu-toggle" id="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="menu" id="menu">
+            <ul class="menu">
                 {% if user.is_authenticated %}
                 <li>
                     <form action="{% url 'logout' %}" method="post" class="logout-form">
@@ -40,36 +33,32 @@
                 <li><a href="{% url 'news' %}">Новости</a></li>
                 <li><a href="{% url 'animals' %}">Наши животные</a></li>
                 <li><a href="{% url 'topic-list' %}">Форум</a></li>
-                <li><a href="{% url 'contacts' %}">Контакты</a></li>
+                <li><a href="#">Контакты</a></li>
                 <li><a href="#" class="donate-button">Пожертвовать</a></li>
             </ul>
         </nav>
     </header>
 
-
     <main>
-        <div class="forum-container">
-            <section class="topic-form">
-                <h2>Создать новую тему</h2>
-                <form method="POST" class="create-topic-form">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_title">Название темы:</label>
-                        {{ form.title }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_description">Описание:</label>
-                        {{ form.description }}
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Создать тему</button>
-                    </div>
-                </form>
-            </section>
-        </div>
-    </main>
+        <section class="hero">
+            <h2>Контакты</h2>
+            <p>Свяжитесь с нами для вопросов, предложений или помощи.</p>
+        </section>
 
-    <script src="{% static 'main/js/index.js' %}"></script>
+        <section class="contacts">
+            <div class="contacts-block">
+                <h3>Реквизиты Благотворительного Фонда "Преданные Души"</h3>
+                <p>
+                    ПАО Сбербанк<br>
+                    <strong>Карта Сбербанка:</strong> 5336 6902 6528 6270 (Татьяна Владимировна В)<br>
+                    <strong>Р/С:</strong> 40703810056000003291<br>
+                    <strong>ИНН:</strong> 6434015748<br>
+                    <strong>БИК:</strong> 043601607<br>
+                    <strong>КПП:</strong> 643401001
+                </p>
+            </div>
+        </section>
+    </main>
 </body>
 
 </html>

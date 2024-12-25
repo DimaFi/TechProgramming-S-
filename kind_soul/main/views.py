@@ -31,6 +31,8 @@ def animals_view(request):
     animals = Animal.objects.prefetch_related('photos').all()  # Prefetch related photos
     return render(request, 'main/animals.html', {'animals': animals})
 
+def contacts_view(request):
+    return render(request, 'main/contacts.html')
 
 # region forum
 class TopicListView(ListView):

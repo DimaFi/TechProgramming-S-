@@ -16,7 +16,7 @@ body {
 }
 
 /* Основной контент */
-.main-content {
+.main-content { 
     flex: 1 1 70%; /* Основной блок занимает 70% ширины */
     margin-right: 20px;
     background-color: #ffffff;

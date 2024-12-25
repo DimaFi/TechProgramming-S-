@@ -10,6 +10,8 @@ urlpatterns = [
     path('', views.index_view, name='index'),
     path('news/', views.news_view, name='news'),
     path('animals/', views.animals_view, name='animals'),
+    path('contacts/', views.contacts_view, name='contacts'),
+
 
     # forum
     path('forum/', TopicListView.as_view(), name='topic-list'),

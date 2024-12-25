@@ -1,0 +1,68 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaf6ff;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Герой секция */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #00c3a9;
+}
+
+.hero p {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Секция контактов */
+.contacts {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #eaf6ff;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.contacts-block {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contacts-block h3 {
+    font-size: 1.8em;
+    color: #00c3a9;
+    margin-bottom: 20px;
+}
+
+.contacts-block p {
+    font-size: 1.2em;
+    color: #333;
+    line-height: 1.6;
+    text-align: left;
+}
