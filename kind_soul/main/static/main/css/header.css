@@ -213,3 +213,14 @@ nav {
         margin: 10px auto;
     }
 }
+
+/* Стили для мобильных устройств */
+@media (max-width: 768px) {
+    .header-nav {
+        display: none; /* Скрываем навигационное меню */
+    }
+
+    .burger-menu {
+        display: block; /* Показываем бургер-меню */
+    }
+}

@@ -17,6 +17,11 @@
             <h1>Преданные Души</h1>
         </div>
         <nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="menu">
                 {% if user.is_authenticated %}
                 <li>
@@ -56,9 +61,21 @@
                     <strong>БИК:</strong> 043601607<br>
                     <strong>КПП:</strong> 643401001
                 </p>
+                <p>По всем вопросам касательно животных и предложения новостей писать: fond_dobrye_dyshi@gmail.com</p>
             </div>
         </section>
     </main>
+    {% comment %} <script src="{% static 'main/js/index.js' %}"></script> {% endcomment %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menu = document.querySelector('.menu');
+          
+            menuToggle.addEventListener('click', () => {
+              menu.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 
 </html>
