@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e8f6ff;
+    background-color: #e8f6ff;  /* фон страницы */
     color: #333;
     line-height: 1.6;
 }
@@ -125,16 +125,27 @@ h1 {
     border-radius: 10px;
 }
 
-.close-button {
-    background-color: #ccc;
-    color: #000;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+/* Стили для кнопки выхода */
+.btn-danger {
+    background-color: #dc3545;  /* Красный фон */
+    color: white;  /* Белый текст */
+    border: none;  /* Без рамки */
+    padding: 10px 20px;  /* Отступы внутри кнопки */
+    border-radius: 5px;  /* Сглаженные углы */
+    font-size: 1rem;  /* Размер шрифта */
+    font-weight: bold;  /* Полужирный шрифт */
+    cursor: pointer;  /* Курсор в виде руки */
+    transition: background-color 0.3s, transform 0.2s;  /* Плавные анимации */
 }
 
-.close-button:hover {
-    background-color: #aaa;
+/* Эффект при наведении */
+.btn-danger:hover {
+    background-color: #c82333;  /* Темнее при наведении */
+    transform: scale(1.05);  /* Легкое увеличение кнопки */
+}
+
+/* Эффект при нажатии */
+.btn-danger:active {
+    background-color: #bd2130;  /* Еще темнее при нажатии */
+    transform: scale(1);  /* Возвращение к нормальному размеру */
 }

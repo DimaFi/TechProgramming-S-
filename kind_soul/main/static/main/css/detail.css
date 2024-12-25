@@ -1,170 +1,150 @@
-/* Общие стили для страницы детали темы */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    margin: 0;
-    padding: 0;
-}
-
-/* Контейнер для всей страницы */
-.forum-container {
+/* Основные стили для страницы деталей темы */
+.detail-container {
     max-width: 1200px;
     margin: 20px auto;
     padding: 20px;
-}
-
-/* Секция детали темы */
-.topic-detail {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.topic-detail h2 {
+.detail-header {
+    margin-bottom: 20px;
+}
+
+.detail-title {
     font-size: 2rem;
     color: #333;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.topic-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.topic-author {
+.detail-meta {
     font-size: 0.9rem;
-    color: #888;
+    color: #777;
     margin-bottom: 20px;
 }
 
-/* Комментарии */
-.comment-container {
-    margin-top: 30px;
+/* Контент темы */
+.detail-content {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Блок комментариев */
+.comments-container {
+    margin-top: 40px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comments-header {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 .comment {
-    background-color: #f9f9f9;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .comment-author {
     font-weight: bold;
-    color: #333;
+    color: #008f7a;
     margin-bottom: 5px;
 }
 
-.comment-content {
+.comment-text {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 10px;
+    line-height: 1.5;
 }
 
 .comment-date {
     font-size: 0.8rem;
-    color: #888;
+    color: #777;
+    margin-top: 10px;
 }
 
-/* Пагинация */
-.pagination {
+/* Форма добавления комментария */
+.comment-form {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form input,
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+.comment-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.comment-form button {
+    padding: 12px 18px;
+    background-color: #008f7a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #007b69;
+}
+
+/* Кнопка возврата к списку тем */
+.back-to-topics {
+    display: inline-block;
     margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.pagination a {
-    padding: 8px 12px;
+    padding: 10px 15px;
     background-color: #007bff;
     color: white;
     text-decoration: none;
     border-radius: 5px;
-    font-size: 0.9rem;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
-.pagination a:hover {
+.back-to-topics:hover {
     background-color: #0056b3;
 }
 
-.pagination .current {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Кнопка для всех комментариев */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #008f7a;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-.btn:hover {
-    background-color: #007b69;
-}
-
-/* Форма добавления комментария */
-form {
-    margin-top: 30px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-form button {
-    padding: 12px 18px;
-    background-color: #008f7a;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 15px;
-}
-
-form button:hover {
-    background-color: #007b69;
-}
-
-/* Адаптивность */
+/* Адаптивность для деталей темы */
 @media (max-width: 768px) {
-    .forum-container {
-        padding: 10px;
+    .detail-container {
+        padding: 15px;
     }
 
-    .topic-detail h2 {
+    .detail-title {
         font-size: 1.8rem;
     }
 
-    .topic-description {
-        font-size: 0.9rem;
-    }
-
-    .comment {
-        padding: 10px;
-    }
-
-    .pagination a {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-    }
-
-    .btn, form button {
-        padding: 10px 15px;
-        font-size: 0.9rem;
+    .comments-header {
+        font-size: 1.3rem;
     }
 }

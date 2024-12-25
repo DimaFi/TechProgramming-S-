@@ -11,6 +11,12 @@ from django.core.paginator import Paginator
 
 from .forms import CommentForm
 
+# регистрация
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import RegisterForm
+
 
 def index_view(request):
     return render(request, 'main/index.html')
@@ -26,8 +32,7 @@ def animals_view(request):
     return render(request, 'main/animals.html', {'animals': animals})
 
 
-# forum
-
+# region forum
 class TopicListView(ListView):
     model = Topic
     template_name = 'main/forum/topic_list.html'
@@ -43,7 +48,7 @@ class TopicDetailView(DetailView):
         comments = topic.comments.all()
 
         # Пагинация комментариев
-        paginator = Paginator(comments, 3)  # Показывать по 10 комментариев на странице
+        paginator = Paginator(comments, 10)  # Показывать по 10 комментариев на странице
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
@@ -114,3 +119,31 @@ class TopicCommentsView(DetailView):
         context = super().get_context_data(**kwargs)
         context['comments'] = context['topic'].comments.all()  # Все комментарии
         return context
+
+# endregion
+
+# region register
+# Регистрация
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Логин сразу после регистрации
+            return redirect('index')  # Перенаправление на главную страницу
+    else:
+        form = RegisterForm()
+    return render(request, 'main/register/register.html', {'form': form})
+
+# Вход
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'main/register/login.html', {'form': form})
+#endregion
